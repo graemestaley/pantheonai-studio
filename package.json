@@ -1,0 +1,11 @@
+{
+  "name": "pantheonai-studio",
+  "version": "0.1.0",
+  "description": "PantheonAI Studio static UI",
+  "scripts": {
+    "start": "npx serve . -s -l 3000",
+    "dev": "npx serve . -s -l 3000"
+  },
+  "author": "",
+  "license": "MIT"
+}
