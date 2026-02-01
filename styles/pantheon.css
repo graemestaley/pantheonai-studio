@@ -1,0 +1,143 @@
+/* PantheonAI Studio - Design Manifest implementation
+   Palette: Sovereign Gold (#D4AF37), Obsidian (#0D0D0D), Slate Grey (#1A1A1B)
+   Fonts: Montserrat (headers light/thin), Inter (body)
+   Glassmorphism: 15% transparency, 20px backdrop blur
+*/
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&family=Montserrat:wght@300;400;700;800&display=swap');
+
+:root {
+    --gold: #D4AF37;
+    --obsidian: #0D0D0D;
+    --slate: #1A1A1B;
+    --white: #FFFFFF;
+    --glass-alpha: 0.15; /* 15% transparency */
+    --glass-blur: 20px;
+    --card-radius: 12px;
+}
+
+html, body {
+    height: 100%;
+    background: linear-gradient(180deg, var(--obsidian) 0%, #060606 100%);
+    color: var(--white);
+    font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+    -webkit-font-smoothing:antialiased;
+    -moz-osx-font-smoothing:grayscale;
+}
+
+/* Shared glass panel */
+.glass-panel {
+    background: rgba(13,13,13, var(--glass-alpha));
+    backdrop-filter: blur(var(--glass-blur));
+    -webkit-backdrop-filter: blur(var(--glass-blur));
+    border: 1px solid rgba(255,255,255,0.04);
+    border-radius: var(--card-radius);
+    box-shadow: 0 6px 30px rgba(0,0,0,0.6);
+}
+
+/* Header */
+.header {
+    background: linear-gradient(90deg, var(--obsidian), #070707);
+    border-bottom: 1px solid rgba(255,255,255,0.03);
+}
+.header .brand {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 300;
+    letter-spacing: 0.06em;
+    color: var(--white);
+}
+.header .accent {
+    color: var(--gold);
+    font-weight: 700;
+}
+
+/* Top metrics banner */
+.top-banner {
+    display:flex;
+    gap:16px;
+    align-items:center;
+    justify-content:space-between;
+    padding: 18px 20px;
+}
+.metric {
+    display:flex;
+    flex-direction:column;
+}
+.metric .label {
+    font-size:12px;
+    color: rgba(255,255,255,0.6);
+    text-transform:uppercase;
+    letter-spacing:0.08em;
+    font-weight:300;
+    font-family: 'Montserrat', sans-serif;
+}
+.metric .value {
+    font-size:20px;
+    font-weight:800;
+    color: var(--white);
+    font-family: 'Montserrat', sans-serif;
+}
+
+/* Center Truth Gauge */
+.truth-gauge {
+    width: 340px;
+    height: 340px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    position:relative;
+}
+.truth-gauge .label {
+    position:absolute;
+    bottom:22px;
+    text-align:center;
+    font-family:'Montserrat', sans-serif;
+    font-weight:300;
+    color:rgba(255,255,255,0.85);
+}
+.truth-gauge .value-num {
+    font-size:48px;
+    font-weight:800;
+    color:var(--gold);
+    text-shadow: 0 6px 30px rgba(212,175,55,0.25);
+}
+.truth-gauge .gauge-wrap svg circle.bg {
+    stroke: rgba(255,255,255,0.03);
+}
+.truth-gauge .gauge-wrap svg circle.fg {
+    stroke: var(--gold);
+    stroke-linecap: round;
+    filter: drop-shadow(0 8px 24px rgba(212,175,55,0.25));
+}
+
+/* Deity Cards */
+.deity-grid { display:grid; grid-template-columns:repeat(4, 1fr); gap:14px; }
+.deity-card { padding:14px; border-radius:10px; display:flex; flex-direction:column; gap:6px; align-items:flex-start; }
+.deity-card .name { font-weight:700; font-family:'Montserrat',sans-serif; }
+.deity-card .role { font-size:12px; color:rgba(255,255,255,0.6); }
+.deity-card[data-outline] { border:1px solid rgba(255,255,255,0.04); }
+.deity-card[data-outline="orion"] { box-shadow: 0 0 18px rgba(212,175,55,0.04); }
+.deity-card[data-outline="vesta"] { box-shadow: 0 0 14px rgba(212,175,55,0.03); }
+.deity-card small { font-size:12px; color:rgba(255,255,255,0.65); }
+
+/* Right-side column */
+.side-column { width:320px; display:flex; flex-direction:column; gap:12px; }
+.summary { padding:14px; border-radius:10px; }
+
+/* Orion page accent */
+.orion-header { color:var(--gold); font-weight:700; }
+.orion-amount { font-size:22px; font-family:'Montserrat',sans-serif; font-weight:800; color:var(--gold); }
+
+/* Vesta page accent */
+.vesta-header { color:#e6b9b6; font-weight:700; }
+.sentiment-pill { background: linear-gradient(90deg, rgba(212,175,55,0.08), rgba(255,255,255,0.02)); padding:6px 10px; border-radius:999px; font-weight:700; color:var(--white); }
+
+/* Utilities */
+.center-box { display:flex; align-items:center; justify-content:center; }
+.small { font-size:12px; }
+
+@media (max-width: 900px) {
+    .deity-grid { grid-template-columns:repeat(2, 1fr); }
+    .truth-gauge { width:260px; height:260px; }
+    .side-column { width:100%; }
+}

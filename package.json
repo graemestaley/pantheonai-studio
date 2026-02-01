@@ -4,7 +4,11 @@
   "description": "PantheonAI Studio static UI",
   "scripts": {
     "start": "npx serve . -s -l 3000",
-    "dev": "npx serve . -s -l 3000"
+    "dev": "npx serve . -s -l 3000",
+    "export:mockups": "node scripts/export-mockups.js"
+  },
+  "devDependencies": {
+    "sharp": "^0.31.3"
   },
   "author": "",
   "license": "MIT"

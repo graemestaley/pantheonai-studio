@@ -1,0 +1,49 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="800" viewBox="0 0 1280 800">
+  <rect width="100%" height="100%" fill="#0D0D0D"/>
+  <defs>
+    <linearGradient id="goldGlow" x1="0" x2="1">
+      <stop offset="0%" stop-color="#D4AF37" stop-opacity="1"/>
+      <stop offset="100%" stop-color="#D4AF37" stop-opacity="0.6"/>
+    </linearGradient>
+  </defs>
+  <!-- Header -->
+  <text x="48" y="64" fill="#FFFFFF" font-family="Montserrat, sans-serif" font-size="20">PANTHEON</text>
+  <text x="168" y="64" fill="#D4AF37" font-family="Montserrat, sans-serif" font-weight="700" font-size="20">AI</text>
+  <g transform="translate(160,120)">
+    <!-- Gauge background circle -->
+    <circle cx="240" cy="200" r="150" fill="#0D0D0D" stroke="rgba(255,255,255,0.02)" stroke-width="8" />
+    <!-- Gauge arc (70%) -->
+    <path d="M 240 50 A 150 150 0 1 1 233 49" fill="none" stroke="#D4AF37" stroke-width="18" stroke-linecap="round" opacity="0.9"/>
+    <!-- Center text -->
+    <text x="240" y="210" text-anchor="middle" fill="#D4AF37" font-family="Montserrat, sans-serif" font-size="48" font-weight="800">70%</text>
+    <text x="240" y="240" text-anchor="middle" fill="#FFFFFF" font-family="Inter, sans-serif" font-size="14">Profit Margin</text>
+  </g>
+
+  <!-- Deity Cards -->
+  <g transform="translate(560,140)">
+    <rect x="0" y="0" width="220" height="84" rx="10" fill="rgba(13,13,13,0.15)" stroke="rgba(255,255,255,0.03)" />
+    <text x="16" y="28" fill="#FFFFFF" font-family="Montserrat" font-weight="700">Orion</text>
+    <text x="16" y="48" fill="rgba(255,255,255,0.65)" font-family="Inter" font-size="12">Sales Hunter • 18.4%</text>
+  </g>
+
+  <g transform="translate(800,140)">
+    <rect x="0" y="0" width="220" height="84" rx="10" fill="rgba(13,13,13,0.15)" stroke="rgba(255,255,255,0.03)" />
+    <text x="16" y="28" fill="#FFFFFF" font-family="Montserrat" font-weight="700">Vesta</text>
+    <text x="16" y="48" fill="rgba(255,255,255,0.65)" font-family="Inter" font-size="12">Inbound Care • Sentiment 9.4/10</text>
+  </g>
+
+  <g transform="translate(560,260)">
+    <rect x="0" y="0" width="220" height="84" rx="10" fill="rgba(13,13,13,0.15)" stroke="rgba(255,255,255,0.03)" />
+    <text x="16" y="28" fill="#FFFFFF" font-family="Montserrat" font-weight="700">Atlas</text>
+    <text x="16" y="48" fill="rgba(255,255,255,0.65)" font-family="Inter" font-size="12">Risk & Protocols • 2 Active</text>
+  </g>
+
+  <g transform="translate(800,260)">
+    <rect x="0" y="0" width="220" height="84" rx="10" fill="rgba(13,13,13,0.15)" stroke="rgba(255,255,255,0.03)" />
+    <text x="16" y="28" fill="#FFFFFF" font-family="Montserrat" font-weight="700">Chronos</text>
+    <text x="16" y="48" fill="rgba(255,255,255,0.65)" font-family="Inter" font-size="12">Scheduling • Nominal</text>
+  </g>
+
+  <!-- Footer metrics -->
+  <text x="48" y="740" fill="#FFFFFF" font-family="Inter" font-size="14">TOTAL ARBITRAGE: <tspan fill="#D4AF37">$14,200.00</tspan></text>
+</svg>

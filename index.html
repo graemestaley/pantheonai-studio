@@ -7,86 +7,21 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://unpkg.com/lucide@latest"></script>
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Inter:wght@400;600;800&display=swap');
-
-        :root {
-            --bg-dark: #0f0f0f;
-            --panel-bg: #1a1a1a;
-            --cyan-glow: #00f3ff;
-            --orange-alert: #ff4d00;
-            --text-muted: #6b7280;
-        }
-
-        body {
-            background-color: var(--bg-dark);
-            color: #e5e7eb;
-            font-family: 'Inter', sans-serif;
-            /* Allow scroll on small screens */
-            overflow: auto;
-        }
-
-        .mono {
-            font-family: 'JetBrains Mono', monospace;
-        }
-
-        /* Glassmorphism Panel */
-        .glass-panel {
-            background: rgba(26, 26, 26, 0.8);
-            backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
-        }
-
-        /* Cyberpunk Glows */
-        .glow-cyan {
-            box-shadow: 0 0 10px rgba(0, 243, 255, 0.2);
-            border-color: rgba(0, 243, 255, 0.5);
-        }
-        
-        .glow-orange {
-            box-shadow: 0 0 10px rgba(255, 77, 0, 0.2);
-            border-color: rgba(255, 77, 0, 0.5);
-        }
-
-        .grid-bg {
-            background-image: 
-                linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
-            background-size: 30px 30px;
-        }
-
-        /* Oracle Terminal Animation */
-        .cursor-blink {
-            animation: blink 1s step-end infinite;
-        }
-        @keyframes blink {
-            50% { opacity: 0; }
-        }
-
-        /* Hexagon Clip for Radar */
-        .hex-clip {
-            clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
-        }
-
-        /* Responsive chart container */
-        .chart-wrap { width: 100%; height: 160px; }
-        @media (min-width: 768px) {
-            .chart-wrap { height: 100%; }
-        }
-    </style>
+    <link rel="stylesheet" href="styles/pantheon.css">
+    <!-- Legacy theme removed; new design manifest stylesheet included -->
 </head>
-<body class="h-screen w-screen flex flex-col grid-bg text-sm">
+<body class="h-screen w-screen flex flex-col text-sm">
+    <a href="#main-content" class="skip-link">Skip to content</a>
 
-    <header class="h-14 border-b border-gray-800 bg-[#0f0f0f] flex items-center justify-between px-6 z-50">
+    <header class="header h-14 flex items-center justify-between px-6 z-50">
         <div class="flex items-center gap-3">
-            <button id="menuToggle" aria-label="Toggle menu" class="md:hidden p-2 rounded bg-gray-800 hover:bg-gray-700 -ml-2 mr-2">
+            <button id="menuToggle" aria-label="Toggle menu" aria-controls="sidebar" aria-expanded="false" aria-haspopup="true" class="md:hidden p-2 rounded bg-gray-800 hover:bg-gray-700 -ml-2 mr-2 focus:outline-none focus:ring-2 focus:ring-cyan-400 focus:ring-offset-1">
                 <i data-lucide="menu" class="w-5 h-5 text-cyan-400"></i>
             </button>
             <div class="w-8 h-8 bg-gradient-to-br from-gray-700 to-black rounded flex items-center justify-center border border-gray-600">
                 <i data-lucide="cpu" class="text-cyan-400 w-5 h-5"></i>
             </div>
-            <h1 class="font-bold tracking-wider text-lg">PANTHEON<span class="text-cyan-400">AI</span> STUDIO</h1>
+            <h1 class="brand font-bold tracking-wider text-lg">PANTHEON<span class="accent">AI</span> STUDIO</h1>
         </div>
         
         <div class="flex items-center gap-6">
@@ -100,9 +35,9 @@
         </div>
     </header>
 
-    <main class="flex-1 flex overflow-auto">
+    <main id="main-content" class="flex-1 flex overflow-auto">
         
-        <aside id="sidebar" class="hidden md:flex w-64 border-r border-gray-800 bg-[#121212] flex-col">
+        <aside id="sidebar" class="hidden md:flex w-64 border-r border-gray-800 bg-[#121212] flex-col" role="navigation" aria-label="Main sidebar" aria-hidden="true" tabindex="-1">
             <div class="p-4 border-b border-gray-800">
                 <h2 class="text-xs font-bold text-gray-500 uppercase tracking-widest mb-3">Deployed Deities</h2>
                 
@@ -137,119 +72,124 @@
             </div>
         </aside>
 
-        <section class="flex-1 flex flex-col relative bg-gray-900/50">
-            <div class="absolute inset-0 flex items-center justify-center opacity-5 pointer-events-none">
-                <div class="w-96 h-96 border border-cyan-500 rounded-full animate-pulse"></div>
-                <div class="w-[30rem] h-[30rem] border border-cyan-500 rounded-full absolute"></div>
+        <section class="flex-1 flex flex-col relative">
+            <!-- Decorative background subtle rings -->
+            <div class="absolute inset-0 pointer-events-none opacity-6">
+                <div style="position:absolute; left:6%; top:10%; width:360px; height:360px; border-radius:50%; border:1px solid rgba(212,175,55,0.03);"></div>
+                <div style="position:absolute; right:10%; bottom:6%; width:420px; height:420px; border-radius:50%; border:1px solid rgba(255,255,255,0.02);"></div>
             </div>
 
-            <div class="flex-1 p-8 flex gap-8 z-10">
-                
-                <div class="flex-1 flex flex-col items-center justify-center">
-                    <div class="relative w-48 h-48 md:w-64 md:h-64 mb-8">
-                        <div class="absolute inset-0 border-2 border-cyan-500/20 rounded-full animate-[spin_10s_linear_infinite]"></div>
-                        <div class="absolute inset-4 border border-cyan-500/40 rounded-full animate-[spin_15s_linear_infinite_reverse]"></div>
-                        <div class="absolute inset-0 flex items-center justify-center">
-                            <i data-lucide="crosshair" class="w-24 h-24 text-cyan-400 opacity-80"></i>
-                        </div>
-                        <div class="absolute bottom-0 w-full text-center">
-                            <span class="text-xs mono text-cyan-500 bg-black/50 px-2 py-1 border border-cyan-900">ID: 11labs-Adrian</span>
+            <!-- Top banner with high level metrics -->
+            <div class="top-banner glass-panel mx-8 my-6">
+                <div style="display:flex; gap:18px; align-items:center;">
+                    <div class="metric">
+                        <span class="label">Total Arbitrage</span>
+                        <span class="value">$14,200.00</span>
+                    </div>
+
+                    <div class="metric">
+                        <span class="label">Active Workforce</span>
+                        <span class="value">4 Deities Online</span>
+                    </div>
+
+                    <div class="metric">
+                        <span class="label">Top Metric</span>
+                        <span class="value">Truth Gauge (Margin)</span>
+                    </div>
+                </div>
+
+                <div style="display:flex; gap:14px; align-items:center;">
+                    <div class="metric">
+                        <span class="label">Center Dial</span>
+                        <span class="value">The Truth Gauge</span>
+                    </div>
+                    <div class="metric">
+                        <span class="label">Brand</span>
+                        <span class="value header brand">PantheonAI</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Main content area: left (gauge + deity cards) & right (side column with Orion & Vesta highlights) -->
+            <div class="flex gap-8 p-8 z-10">
+                <div class="flex-1">
+                    <div class="center-box">
+                        <div class="truth-gauge glass-panel">
+                            <div class="gauge-wrap">
+                                <svg id="truthSvg" width="260" height="260" viewBox="0 0 260 260" class="center-box">
+                                    <defs></defs>
+                                    <circle class="bg" cx="130" cy="130" r="100" stroke-width="18" fill="none"></circle>
+                                    <circle class="fg" cx="130" cy="130" r="100" stroke-width="18" fill="none" stroke-dasharray="628" stroke-dashoffset="628"></circle>
+                                </svg>
+                            </div>
+
+                            <div style="position:absolute; text-align:center;">
+                                <div class="value-num" id="gaugeValue">70%</div>
+                                <div class="label" style="font-size:13px; margin-top:6px;">Profit Margin</div>
+                            </div>
                         </div>
                     </div>
 
-                    <div class="w-full max-w-md h-12 flex items-center gap-1 justify-center mb-6">
-                        <div class="w-1 h-3 bg-cyan-600 animate-pulse"></div>
-                        <div class="w-1 h-6 bg-cyan-500 animate-pulse delay-75"></div>
-                        <div class="w-1 h-8 bg-cyan-400 animate-pulse delay-100"></div>
-                        <div class="w-1 h-4 bg-cyan-600 animate-pulse delay-150"></div>
-                        <div class="w-1 h-7 bg-cyan-400 animate-pulse delay-200"></div>
-                        <div class="w-1 h-3 bg-cyan-600 animate-pulse"></div>
-                    </div>
-
-                    <h2 class="text-3xl font-bold tracking-tight text-white mb-2">ORION <span class="text-gray-600 text-lg font-normal">MK-IV</span></h2>
-                    <p class="text-cyan-400 mono text-xs mb-8">STATUS: READY FOR DEPLOYMENT</p>
-
-                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 w-full max-w-lg">
-                        <div class="glass-panel p-4 rounded flex flex-col items-center justify-center gap-2 hover:border-cyan-500 transition-colors group cursor-pointer">
-                            <i data-lucide="phone" class="text-gray-400 group-hover:text-cyan-400"></i>
-                            <span class="text-[10px] text-gray-500 uppercase">Telephony</span>
-                            <span class="text-xs font-bold">Twilio Trunk</span>
+                    <div class="mt-6 deity-grid">
+                        <div class="glass-panel deity-card" data-outline="orion">
+                            <div class="name">Orion</div>
+                            <div class="role">Sales Hunter</div>
+                            <small>Conversion Rate: <strong>18.4%</strong></small>
                         </div>
-                        <div class="glass-panel p-4 rounded flex flex-col items-center justify-center gap-2 hover:border-cyan-500 transition-colors group cursor-pointer border-cyan-500/30 bg-cyan-900/10">
-                            <i data-lucide="database" class="text-cyan-400"></i>
-                            <span class="text-[10px] text-cyan-300 uppercase">Knowledge Base</span>
-                            <span class="text-xs font-bold text-white">Pricing Sheet.pdf</span>
+                        <div class="glass-panel deity-card" data-outline="vesta">
+                            <div class="name">Vesta</div>
+                            <div class="role">Inbound Care</div>
+                            <small>Sentiment: <strong>9.4/10</strong></small>
                         </div>
-                        <div class="border border-dashed border-gray-700 p-4 rounded flex flex-col items-center justify-center gap-2 hover:border-gray-500 transition-colors cursor-pointer">
-                            <i data-lucide="plus" class="text-gray-600"></i>
-                            <span class="text-[10px] text-gray-600 uppercase">Empty Slot</span>
+                        <div class="glass-panel deity-card" data-outline="atlas">
+                            <div class="name">Atlas</div>
+                            <div class="role">Risk & Protocols</div>
+                            <small>Protocols: <strong>2 Active</strong></small>
+                        </div>
+                        <div class="glass-panel deity-card" data-outline="chronos">
+                            <div class="name">Chronos</div>
+                            <div class="role">Scheduling</div>
+                            <small>Status: <strong>Nominal</strong></small>
                         </div>
                     </div>
                 </div>
 
-                <div class="w-full md:w-80 flex flex-col gap-6">
-                    
-                    <div class="glass-panel p-4 rounded h-40 md:h-64 flex flex-col">
-                        <h3 class="text-xs font-bold text-gray-400 mb-4 uppercase">Performance Matrix</h3>
-                        <div class="flex-1 relative flex items-center justify-center chart-wrap">
-                            <canvas id="statsChart"></canvas>
-                        </div>
+                <aside class="side-column">
+                    <div class="glass-panel summary">
+                        <div class="small label">ORION | OUTBOUND SALES</div>
+                        <div class="orion-amount">REVENUE RECOVERED: $42,500</div>
+                        <div style="margin-top:8px; font-size:13px; color:rgba(255,255,255,0.65);">Conversion Rate: <strong>18.4%</strong> • Cost / Lead: <strong>$0.15</strong></div>
                     </div>
 
-                    <div class="glass-panel p-4 rounded border-l-2 border-l-orange-500">
-                        <div class="flex items-center justify-between mb-4">
-                            <h3 class="text-xs font-bold text-white uppercase flex items-center gap-2">
-                                <i data-lucide="shield" class="w-3 h-3 text-orange-500"></i>
-                                Atlas Protocols
-                            </h3>
-                            <span class="text-[10px] bg-orange-900/30 text-orange-400 px-1 rounded">2 ACTIVE</span>
-                        </div>
-                        
-                        <div class="flex justify-between items-center mb-3">
-                            <div class="flex flex-col">
-                                <span class="text-xs text-gray-300">TCPA Consent Script</span>
-                                <span class="text-[10px] text-gray-500">Mandatory for Outbound</span>
-                            </div>
-                            <div class="w-8 h-4 bg-cyan-900 rounded-full relative cursor-pointer">
-                                <div class="w-2 h-2 bg-cyan-400 rounded-full absolute top-1 right-1 shadow-[0_0_5px_rgba(0,243,255,1)]"></div>
-                            </div>
-                        </div>
-
-                        <div class="flex justify-between items-center">
-                            <div class="flex flex-col">
-                                <span class="text-xs text-gray-300">Pricing Hallucination</span>
-                                <span class="text-[10px] text-gray-500">Bound to Knowledge Base</span>
-                            </div>
-                            <div class="w-8 h-4 bg-cyan-900 rounded-full relative cursor-pointer">
-                                <div class="w-2 h-2 bg-cyan-400 rounded-full absolute top-1 right-1 shadow-[0_0_5px_rgba(0,243,255,1)]"></div>
-                            </div>
-                        </div>
+                    <div class="glass-panel summary">
+                        <div class="small label">VESTA | INBOUND CARE</div>
+                        <div class="vesta-header">0.0s Wait • 98% Resolution</div>
+                        <div style="margin-top:8px; font-size:13px; color:rgba(255,255,255,0.65);">Human Minutes Saved: <strong>1,240</strong> • Sentiment: <strong>9.4/10</strong></div>
                     </div>
 
-                    <div class="glass-panel p-4 rounded">
-                         <h3 class="text-xs font-bold text-gray-400 mb-2 uppercase">Unit Economics</h3>
-                         <div class="flex justify-between text-xs mb-1">
-                             <span class="text-gray-500">Est. Cost (Mini)</span>
-                             <span class="mono text-white">$0.016/min</span>
-                         </div>
-                         <div class="flex justify-between text-xs mb-1">
-                             <span class="text-gray-500">Client Price</span>
-                             <span class="mono text-white">$0.45/min</span>
-                         </div>
-                         <div class="w-full bg-gray-800 h-1 mt-2 mb-1">
-                             <div class="bg-green-500 h-full w-[70%]"></div>
-                         </div>
-                         <div class="text-right text-[10px] text-green-400 mono">MARGIN: 68%</div>
+                    <div class="glass-panel summary">
+                        <div class="small label">Quick Actions</div>
+                        <div style="display:flex; gap:8px; margin-top:8px;">
+                            <button id="startHermes" class="glass-panel" style="padding:8px 12px;">Start Hermes Stream</button>
+                            <button id="stopHermes" class="glass-panel" style="padding:8px 12px;">Stop Stream</button>
+                        </div>
+
+                        <div id="hermesPanel" style="margin-top:10px; max-height:120px; overflow:auto; border-radius:8px; padding:8px; background:rgba(0,0,0,0.02);"></div>
+
+                        <div style="margin-top:12px;" class="small label">Atlas Risk Matrix</div>
+                        <canvas id="atlasHeatmap" width="260" height="260" style="margin-top:8px; border-radius:8px; display:block; background:rgba(0,0,0,0.02);"></canvas>
+
+                        <div style="margin-top:8px; font-size:12px; color:rgba(255,255,255,0.6);">Upload: <strong>[11_Client_List_CSV]</strong> • Feature requests: <strong>[12_Specific_Feature_Requests]</strong></div>
                     </div>
-                </div>
+                </aside>
             </div>
         </section>
     </main>
 
     <footer class="bg-black border-t border-cyan-900 p-2 font-mono text-sm flex items-center gap-2 shadow-[0_-5px_20px_rgba(0,0,0,0.8)] z-50">
         <span class="text-cyan-500 font-bold whitespace-nowrap">ORACLE_CORE v4.1 &gt;</span>
-        <input type="text" 
-               class="bg-transparent border-none outline-none text-cyan-100 w-full placeholder-gray-700" 
+        <input id="consoleInput" type="text" aria-label="Console command" 
+               class="bg-transparent border-none outline-none text-cyan-100 w-full placeholder-gray-700 focus:outline-none" 
                placeholder="Enter command... (e.g., 'Analyze Orion efficiency' or 'Deploy Vesta')" 
                autofocus>
         <span class="w-2 h-4 bg-cyan-500 cursor-blink"></span>
@@ -295,12 +235,232 @@
             }
         });
         
-        // Mobile sidebar toggle
+        // Accessible mobile sidebar toggle with keyboard support and focus management
         const menuToggleBtn = document.getElementById('menuToggle');
         const sidebarEl = document.getElementById('sidebar');
+        const mainEl = document.getElementById('main-content');
+
         if (menuToggleBtn && sidebarEl) {
-            menuToggleBtn.addEventListener('click', () => sidebarEl.classList.toggle('hidden'));
+            menuToggleBtn.setAttribute('aria-expanded', 'false');
+            sidebarEl.setAttribute('aria-hidden', 'true');
+
+            function openSidebar() {
+                menuToggleBtn.setAttribute('aria-expanded', 'true');
+                sidebarEl.classList.remove('hidden');
+                sidebarEl.setAttribute('aria-hidden', 'false');
+                const focusable = sidebarEl.querySelector('a, button, input, [tabindex]:not([tabindex="-1"])');
+                if (focusable) focusable.focus();
+                document.addEventListener('keydown', trapFocus);
+                document.addEventListener('keydown', handleEsc);
+            }
+
+            function closeSidebar() {
+                menuToggleBtn.setAttribute('aria-expanded', 'false');
+                sidebarEl.classList.add('hidden');
+                sidebarEl.setAttribute('aria-hidden', 'true');
+                menuToggleBtn.focus();
+                document.removeEventListener('keydown', trapFocus);
+                document.removeEventListener('keydown', handleEsc);
+            }
+
+            menuToggleBtn.addEventListener('click', () => {
+                const expanded = menuToggleBtn.getAttribute('aria-expanded') === 'true';
+                if (expanded) closeSidebar(); else openSidebar();
+            });
+
+            menuToggleBtn.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    menuToggleBtn.click();
+                }
+            });
+
+            function handleEsc(e) {
+                if (e.key === 'Escape') closeSidebar();
+            }
+
+            function trapFocus(e) {
+                if (e.key !== 'Tab') return;
+                const focusable = sidebarEl.querySelectorAll('a,button,input,[tabindex]:not([tabindex="-1"])');
+                if (!focusable.length) return;
+                const first = focusable[0];
+                const last = focusable[focusable.length - 1];
+                if (e.shiftKey) {
+                    if (document.activeElement === first) {
+                        e.preventDefault();
+                        last.focus();
+                    }
+                } else {
+                    if (document.activeElement === last) {
+                        e.preventDefault();
+                        first.focus();
+                    }
+                }
+            }
         }
-    </script>
+
+        // Truth Gauge animation (Sovereign Dashboard center dial)
+        (function(){
+            const pct = 70; // 70% Profit Margin preset
+            const svg = document.getElementById('truthSvg');
+            if (!svg) return;
+            const fg = svg.querySelector('circle.fg');
+            const valEl = document.getElementById('gaugeValue');
+            const r = parseFloat(fg.getAttribute('r'));
+            const circumference = 2 * Math.PI * r;
+            fg.style.strokeDasharray = circumference;
+            fg.style.strokeDashoffset = circumference;
+
+            const duration = 900;
+            let start = null;
+
+            function animate(ts) {
+                if (!start) start = ts;
+                const t = Math.min(1, (ts - start) / duration);
+                const eased = 1 - Math.pow(1 - t, 3);
+                const currentOffset = circumference * (1 - eased * pct / 100);
+                fg.style.strokeDashoffset = currentOffset;
+                const currPct = Math.round(eased * pct);
+                if (valEl) valEl.textContent = currPct + '%';
+                if (t < 1) requestAnimationFrame(animate);
+            }
+            requestAnimationFrame(animate);
+        })();
+
+        // Load sample client CSV and populate deity cards
+        (function(){
+            fetch('data/11_Client_List_CSV.csv')
+                .then(r => r.text())
+                .then(text => {
+                    const rows = text.trim().split('\n').slice(1).map(r => r.split(/,(?=(?:[^\"]*\"[^\"]*\")*[^\"]*$)/));
+                    const cards = document.querySelectorAll('.deity-card');
+                    cards.forEach((card, i) => {
+                        const row = rows[i];
+                        if (!row) return;
+                        const company = row[1] ? row[1].replace(/"/g,'') : '';
+                        const small = card.querySelector('small');
+                        if (small) {
+                            const clientNode = document.createElement('div');
+                            clientNode.style.marginTop = '6px';
+                            clientNode.style.fontSize = '12px';
+                            clientNode.style.color = 'rgba(255,255,255,0.75)';
+                            clientNode.textContent = 'Client: ' + company;
+                            small.parentNode.appendChild(clientNode);
+                        }
+                    });
+                })
+                .catch(err => console.warn('Failed to load client CSV', err));
+
+        // Add quick download links for the SVG mockups
+            try {
+                const thirdSummary = document.querySelectorAll('.side-column .summary')[2];
+                if (thirdSummary) {
+                    const container = document.createElement('div');
+                    container.style.marginTop = '10px';
+                    container.style.display = 'flex';
+                    container.style.gap = '8px';
+
+                    const files = [
+                        { name: 'Sovereign Dashboard', path: 'assets/mockups/sovereign-dashboard.svg' },
+                        { name: 'Orion Domain', path: 'assets/mockups/orion-domain.svg' },
+                        { name: 'Vesta Hearth', path: 'assets/mockups/vesta-hearth.svg' }
+                    ];
+
+                    files.forEach(f => {
+                        const a = document.createElement('a');
+                        a.href = f.path;
+                        a.download = f.path.split('/').pop();
+                        a.className = 'glass-panel';
+                        a.style.padding = '8px 10px';
+                        a.style.fontSize = '12px';
+                        a.style.textDecoration = 'none';
+                        a.style.color = 'inherit';
+                        a.textContent = 'Download ' + f.name;
+                        container.appendChild(a);
+                    });
+
+                    thirdSummary.appendChild(container);
+                }
+            } catch (e) { console.warn('Failed to append mockup links', e); }
+        })();
+        // Hermes Data Stream
+        (function(){
+            const hermesPanel = document.getElementById('hermesPanel');
+            const startBtn = document.getElementById('startHermes');
+            const stopBtn = document.getElementById('stopHermes');
+            let events = [];
+            let index = 0;
+            let timer = null;
+
+            function renderEvent(ev) {
+                const el = document.createElement('div');
+                el.style.padding = '6px';
+                el.style.borderBottom = '1px solid rgba(255,255,255,0.03)';
+                el.innerHTML = `<div style="font-size:12px;color:rgba(255,255,255,0.9)"><strong>${ev.client}</strong> <span style="color:rgba(255,255,255,0.6);font-size:11px">(${ev.source})</span></div><div style="font-size:13px;color:rgba(212,175,55,0.9);">${ev.event}</div><div style="font-size:11px;color:rgba(255,255,255,0.6)">${new Date(ev.time).toLocaleTimeString()}</div>`;
+                if (hermesPanel) {
+                    hermesPanel.insertBefore(el, hermesPanel.firstChild);
+                    while (hermesPanel.childElementCount > 12) hermesPanel.removeChild(hermesPanel.lastChild);
+                }
+            }
+
+            function startStream() {
+                if (timer) return;
+                fetch('data/hermes_stream.json').then(r=>r.json()).then(data=>{
+                    events = data;
+                    index = 0;
+                    renderEvent({time: new Date().toISOString(), source: 'system', event: 'stream_started', client: 'system'});
+                    timer = setInterval(()=>{
+                        const ev = events[index % events.length];
+                        renderEvent(ev);
+                        index++;
+                    }, 1200);
+                }).catch(e=>console.warn('Hermes stream load failed', e));
+            }
+
+            function stopStream() {
+                if (timer) { clearInterval(timer); timer = null; renderEvent({time: new Date().toISOString(), source: 'system', event: 'stream_stopped', client: 'system'}); }
+            }
+
+            if (startBtn) startBtn.addEventListener('click', startStream);
+            if (stopBtn) stopBtn.addEventListener('click', stopStream);
+        })();
+
+        // Atlas Risk Matrix renderer
+        (function(){
+            const canvas = document.getElementById('atlasHeatmap');
+            if (!canvas) return;
+            const ctx = canvas.getContext('2d');
+
+            function colorForValue(v){
+                const a = {r:26,g:26,b:27};
+                const b = {r:212,g:175,b:55};
+                const t = Math.max(0, Math.min(1, v/100));
+                const r = Math.round(a.r + (b.r - a.r)*t);
+                const g = Math.round(a.g + (b.g - a.g)*t);
+                const bl = Math.round(a.b + (b.b - a.b)*t);
+                return `rgb(${r},${g},${bl})`;
+            }
+
+            fetch('data/atlas_risk.csv').then(r=>r.text()).then(text=>{
+                const rows = text.trim().split('\n').map(line => line.split(',').map(n=>parseFloat(n)));
+                const h = canvas.height;
+                const w = canvas.width;
+                const rowsCount = rows.length;
+                const colsCount = rows[0].length;
+                const cellW = Math.floor(w/colsCount);
+                const cellH = Math.floor(h/rowsCount);
+                rows.forEach((row,y)=>{
+                    row.forEach((v,x)=>{
+                        ctx.fillStyle = colorForValue(v);
+                        ctx.fillRect(x*cellW, y*cellH, cellW, cellH);
+                        ctx.fillStyle = 'rgba(255,255,255,0.85)';
+                        ctx.font = '12px Inter';
+                        ctx.textAlign = 'center';
+                        ctx.textBaseline = 'middle';
+                        ctx.fillText(String(v), x*cellW + cellW/2, y*cellH + cellH/2);
+                    });
+                });
+            }).catch(e=>console.warn('Failed to load atlas csv', e));
+        })();    </script>
 </body>
 </html>

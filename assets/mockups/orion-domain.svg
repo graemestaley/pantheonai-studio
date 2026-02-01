@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="720" viewBox="0 0 1280 720">
+  <rect width="100%" height="100%" fill="#070707"/>
+  <text x="48" y="64" fill="#D4AF37" font-family="Montserrat, sans-serif" font-size="20" font-weight="700">ORION | OUTBOUND SALES</text>
+
+  <!-- Revenue card -->
+  <rect x="48" y="100" rx="10" width="540" height="120" fill="rgba(13,13,13,0.15)" stroke="rgba(255,255,255,0.03)" />
+  <text x="72" y="156" fill="#FFFFFF" font-family="Montserrat" font-size="28" font-weight="800">REVENUE RECOVERED:</text>
+  <text x="420" y="156" fill="#D4AF37" font-family="Montserrat" font-size="28" font-weight="800">$42,500</text>
+
+  <!-- Graph -->
+  <g transform="translate(48,240)">
+    <rect width="1160" height="360" rx="12" fill="#0b0b0b" stroke="rgba(255,255,255,0.02)" />
+    <polyline points="20,320 100,260 180,200 260,220 340,140 420,120 500,100 580,80 660,60 740,40 820,32 900,28 980,20 1060,18 1140,14"
+              fill="none" stroke="#D4AF37" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
+
+  <text x="48" y="620" fill="rgba(255,255,255,0.6)" font-family="Inter" font-size="13">Conversion Rate: <tspan fill="#FFFFFF">18.4%</tspan> • Cost per Lead: <tspan fill="#FFFFFF">$0.15</tspan></text>
+</svg>

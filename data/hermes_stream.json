@@ -1,0 +1,9 @@
+[
+  { "time": "2026-02-01T09:00:12Z", "source": "ads_fb", "event": "lead_in", "client": "Helios Financial Services", "value": 1 },
+  { "time": "2026-02-01T09:00:14Z", "source": "email_campaign", "event": "reengage", "client": "Argentum Holdings", "value": 1 },
+  { "time": "2026-02-01T09:00:17Z", "source": "organic_search", "event": "lead_in", "client": "MarrowTech Labs", "value": 1 },
+  { "time": "2026-02-01T09:00:21Z", "source": "paid_search", "event": "lead_in", "client": "Aurelia Wellness", "value": 1 },
+  { "time": "2026-02-01T09:00:24Z", "source": "referral", "event": "upgrade", "client": "Capstone Logistics", "value": 1 },
+  { "time": "2026-02-01T09:00:29Z", "source": "ads_fb", "event": "lead_in", "client": "Lyra Communications", "value": 1 },
+  { "time": "2026-02-01T09:00:33Z", "source": "email_campaign", "event": "reengage", "client": "Orpheus Media", "value": 1 }
+]

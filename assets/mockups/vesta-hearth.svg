@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="720" viewBox="0 0 1200 720">
+  <rect width="100%" height="100%" fill="#121212"/>
+  <defs>
+    <linearGradient id="rose" x1="0" x2="1"><stop offset="0%" stop-color="#FFD6C1" stop-opacity="0.14"/><stop offset="100%" stop-color="#E6B9B6" stop-opacity="0.06"/></linearGradient>
+  </defs>
+
+  <text x="48" y="64" fill="#E6B9B6" font-family="Montserrat, sans-serif" font-size="20" font-weight="700">VESTA | INBOUND CARE</text>
+
+  <!-- Sentiment waveform -->
+  <g transform="translate(48,120)">
+    <rect width="1104" height="320" rx="12" fill="rgba(13,13,13,0.15)" stroke="rgba(255,255,255,0.02)" />
+    <path d="M 20 200 C 80 150 160 220 240 160 C 320 100 400 220 480 180 C 560 140 640 210 720 160 C 800 110 880 220 960 170 C 1040 120 1120 190 1184 150"
+          fill="none" stroke="#E6B9B6" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" opacity="0.95"/>
+  </g>
+
+  <g transform="translate(48,460)">
+    <text x="8" y="28" fill="#FFFFFF" font-family="Montserrat" font-size="20" font-weight="700">0.0s Wait • 98% Resolution</text>
+    <text x="8" y="56" fill="rgba(255,255,255,0.7)" font-family="Inter" font-size="13">Human Minutes Saved: <tspan fill="#FFFFFF">1,240</tspan> • Sentiment: <tspan fill="#FFFFFF">9.4/10</tspan></text>
+  </g>
+</svg>
